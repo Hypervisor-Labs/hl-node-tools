@@ -1,0 +1,128 @@
+# hl-node-supervisor.service.example
+#
+# A systemd unit for the Hyperliquid node supervisor binary (the one that
+# downloads and runs the node itself). Copy to
+# /etc/systemd/system/<name>.service, substitute the @PLACEHOLDERS@, then:
+#
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now <name>.service
+#
+# 🔴 READ systemd/README.md BEFORE YOU TAIL THIS UNIT'S LOGS. The node performs a
+# scan of /proc at startup and PANICS if any other running process has the
+# supervisor's or the node's program name anywhere in its argv. `journalctl -u
+# <that name> -f` is exactly such a process. See README.md for the two safe ways.
+#
+# @NODE_USER@ / @NODE_HOME@ are substituted at install time. systemd will not
+# expand $HOME for a User= service, so the identity has to be written in. Leaving
+# the placeholders in place makes the unit fail to start, which is deliberate —
+# a unit that starts with a wrong user is much harder to notice.
+
+[Unit]
+Description=Hyperliquid node supervisor
+Documentation=https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/running-a-node
+
+# network-online.target rather than network.target: the supervisor's first act is
+# to fetch a binary index over HTTPS and then dial peers. network.target only
+# means "the network stack is configured", not "an address is up and routable",
+# so on a slow-DHCP or cloud-init box the unit starts, fails DNS, and burns a
+# restart before the box is actually on the network.
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=@NODE_USER@
+Group=@NODE_USER@
+WorkingDirectory=@NODE_HOME@
+
+# Replace with your own flag set. Each --write-* flag costs real disk: on a
+# mainnet node the raw book-diff stream alone is multiple GB per hour. Turn on
+# only what you consume, and pair any --write-* flag with the pruner in ../disk/.
+ExecStart=@NODE_HOME@/hl-visor run-non-validator --serve-info
+
+# ---------------------------------------------------------------------------
+# Restart policy
+# ---------------------------------------------------------------------------
+#
+# ⚠ An unplanned restart is NOT cheap for this workload. If the node is far
+# enough behind the chain when it restarts, it discards local state and takes a
+# FULL state bootstrap from a peer — on the order of a gigabyte on the wire and,
+# on a bad peer draw, hours of being blind. Treat every restart as expensive and
+# make sure nothing on the box restarts this unit casually (see ../host/).
+Restart=always
+# 15 s, not the 100 ms default: an immediate respawn into a transient failure
+# (no network, peer refusing, disk full) just burns the failure faster.
+RestartSec=15
+# Back off progressively rather than hammering a peer that is refusing us.
+RestartSteps=5
+RestartMaxDelaySec=120
+
+# Graceful stop first, hard kill only if it hangs. KillMode=mixed sends SIGTERM
+# to the main process only and SIGKILL to the whole cgroup at timeout, which is
+# right for a supervisor that wants to shut its own child down cleanly.
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+Environment=HOME=@NODE_HOME@
+Environment=RUST_BACKTRACE=1
+
+StandardOutput=journal
+StandardError=journal
+# 🔴 A NEUTRAL SYSLOG IDENTIFIER, ON PURPOSE. With this set you can tail the
+# journal with `journalctl -t hlsup -f`, whose argv contains NEITHER the
+# supervisor's nor the node's program name — so it cannot trip the /proc
+# self-scan. This one line removes the need for any special tooling. See
+# README.md.
+SyslogIdentifier=hlsup
+
+# ---------------------------------------------------------------------------
+# Resource limits
+# ---------------------------------------------------------------------------
+
+# File descriptors. Each gossip peer costs several sockets, and every open data
+# file the node is writing costs one. 65535 is generous and cheap; the default
+# (1024 on many distros) is reachable on a busy node and produces confusing
+# "too many open files" failures deep in unrelated code paths.
+LimitNOFILE=65535
+
+# 🔴 LimitNPROC IS PER-UID, NOT PER-UNIT. RLIMIT_NPROC counts every process
+# owned by this user across the WHOLE box, including processes started by other
+# services and by your own interactive shells. We lost a service for 25 hours to
+# this: an unrelated daemon running as the same user leaked ~1,900 short-lived
+# helper processes, the shared per-UID ceiling filled, and the victim was a
+# completely different program that could no longer fork. If you set this, either
+# give the node its own dedicated user, or use TasksMax (below), which is a
+# cgroup limit and therefore genuinely per-unit.
+LimitNPROC=4096
+
+# TasksMax is the cgroup pids controller: it counts tasks in THIS unit's cgroup
+# only, which is almost always what people actually mean when they reach for
+# LimitNPROC. Default on most systems is 15% of kernel.pid_max, which is usually
+# fine; set it explicitly if you want a hard bound on this unit alone.
+# TasksMax=8192
+
+# Memory. Leave unset unless you know the working set. If you do set it, set
+# MemoryHigh (soft, throttles and reclaims) below MemoryMax (hard, OOM-kills the
+# cgroup) so you get back-pressure before a kill.
+# MemoryHigh=80%
+# MemoryMax=90%
+
+# 🔴 OOM protection. Under memory pressure the kernel picks its victim by RSS,
+# which means it picks the node — the largest process on the box — and the node
+# is the one thing here that is expensive to restart. Everything else on the box
+# restarts in seconds. -800 makes the node a near-last resort. Inherited by the
+# node process the supervisor spawns.
+OOMScoreAdjust=-800
+
+# ---------------------------------------------------------------------------
+# Sandboxing (optional but cheap)
+# ---------------------------------------------------------------------------
+NoNewPrivileges=true
+PrivateTmp=true
+# Mounts /usr, /boot and /etc read-only for this unit. Everything the node needs
+# to write must then be named in ReadWritePaths.
+ProtectSystem=strict
+ReadWritePaths=@NODE_HOME@/hl
+
+[Install]
+WantedBy=multi-user.target

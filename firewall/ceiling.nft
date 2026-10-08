@@ -1,0 +1,67 @@
+#!/usr/sbin/nft -f
+#
+# ceiling.nft — the nftables form of the gossip connection ceiling.
+#
+# Read the long rationale at the top of gossip-connection-ceiling.sh first. The
+# short version:
+#   * the gossip listener's accept queue is small and fixed (128 in at least one
+#     common implementation) and somaxconn does NOT raise it;
+#   * a per-source RATE limit protects it not at all, because the queue is a
+#     CONCURRENCY resource;
+#   * so cap the number of SIMULTANEOUS inbound connections, globally;
+#   * reject with a TCP reset rather than dropping, so a shed peer fails fast
+#     instead of burning its admission deadline;
+#   * never blanket-block the port, and never touch TCP/4002.
+#
+# Apply:   sudo nft -f ceiling.nft
+# Inspect: sudo nft -a list table inet hl_gossip      (-a shows handles + counters)
+# Remove:  sudo nft delete table inet hl_gossip
+#
+# ⚠ `nft -f` on a table that already exists ADDS to it. The add/delete pair
+# below makes this file idempotent by removing our own table first. It
+# touches nothing else on the box — this is a table of our own, not a hook into
+# yours. If you already manage a firewall with firewalld/ufw, prefer adding an
+# equivalent rule there instead of running a second, competing ruleset.
+
+# `delete table` errors if the table does not exist, which would abort the whole
+# atomic transaction on a first run. `add` first makes the delete always legal —
+# this add/delete pair is the standard nftables idempotency idiom.
+add table inet hl_gossip
+delete table inet hl_gossip
+
+table inet hl_gossip {
+    chain gossip_ceiling {
+        # priority -10: run BEFORE the conventional filter priority 0, so this
+        # ceiling is evaluated before any accept rule in another table can let a
+        # connection through. A ceiling that other rules outrank protects nothing
+        # while looking perfectly healthy in a rule dump.
+        type filter hook input priority -10; policy accept;
+
+        # If your node lives in a network namespace with traffic DNAT'd in from
+        # the host, host-side inbound traverses the FORWARD hook, never input.
+        # In that case add an equivalent chain with `hook forward`, or install
+        # this file INSIDE the namespace.
+
+        # `ct count over N` with NO meter and no key is the GLOBAL form: every
+        # source shares one bucket. That is intended — we are protecting a fixed
+        # number of accept slots, not being fair between peers. (Wrapping it in a
+        # `meter { ip saddr ... }` would make it PER SOURCE, which is the variant
+        # that does not protect the queue.)
+        #
+        # Requires connection tracking to be active; `ct` expressions silently
+        # match nothing if conntrack is not loaded for this family.
+        #
+        # `ct state new` restricts this to connection attempts, so established
+        # peers are never reset by it.
+        #
+        # 24: must sit well below the listener's real accept-queue depth (read
+        # the Send-Q column of `ss -ltn`, NOT somaxconn) and well above your
+        # expected peer count, remembering a peer may hold several connections.
+        tcp dport 4001 ct state new ct count over 24 \
+            counter reject with tcp reset
+
+        # Deliberately NO rule for tcp dport 4002. A peer you have never met
+        # dials 4002 to admit you, inside a hard deadline. Filtering it breaks
+        # admission for every NEW peer while existing peers keep working.
+    }
+}

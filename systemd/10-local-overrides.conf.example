@@ -1,0 +1,32 @@
+# Drop-in template: /etc/systemd/system/<unit>.service.d/10-local-overrides.conf
+#
+# WHY A DROP-IN INSTEAD OF EDITING THE UNIT
+# -----------------------------------------
+# A drop-in is merged on top of the unit file, so per-box differences (memory
+# ceiling, flags, a namespace) live in one small file that a package update or a
+# config-management re-copy of the base unit cannot silently revert. Directives
+# in a .d/*.conf override the base unit; files in the directory are applied in
+# lexical order, same as sysctl.d — so a `10-` file loses to a `50-` file. Name
+# accordingly, and keep one concern per file.
+#
+# After any change:  sudo systemctl daemon-reload
+# Inspect the MERGED result (this is the only view that tells you the truth):
+#   systemctl cat <unit>.service
+#   systemctl show <unit>.service -p LimitNOFILE -p TasksMax -p OOMScoreAdjust
+#
+# ⚠ LIST-VALUED DIRECTIVES APPEND, THEY DO NOT REPLACE. ExecStart=, Environment=,
+# ReadWritePaths= and friends accumulate across drop-ins. To REPLACE one you must
+# first clear it with an empty assignment:
+#     ExecStart=
+#     ExecStart=/new/command --with --flags
+# Forgetting the empty line gives a unit with two ExecStart lines, which for a
+# Type=simple service is a start failure, not a merge.
+
+[Service]
+# Example: a per-box memory ceiling.
+# MemoryHigh=80%
+# MemoryMax=90%
+
+# Example: replacing the command line (note the mandatory empty reset above).
+# ExecStart=
+# ExecStart=/home/node/hl-visor run-non-validator --serve-info --write-fills
