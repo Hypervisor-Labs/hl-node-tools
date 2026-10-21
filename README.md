@@ -136,6 +136,28 @@ then tail by identifier — `journalctl -t hlsup -f` — whose argv contains no
 forbidden literal. `systemd/safe-log-tail.py` is the alternative if you cannot
 change the unit. Details in [`systemd/README.md`](systemd/).
 
+## Once the host is tuned: finding peers
+
+These tools make the box ready to peer. Choosing who to peer with is the next
+step, and the same team publishes three things for it:
+
+- **The network map:** [hypervisor.gg/network](https://hypervisor.gg/network)
+  draws the public gossip network live, as a globe or as a tier view (distance
+  from the sentries). How to read it:
+  [docs/network-map](https://hypervisor.gg/docs/network-map).
+- **The Peer API and its clients:**
+  [HypervisorLabs/hl-peers](https://github.com/HypervisorLabs/hl-peers) queries
+  that same graph (tier-1 peers, peers in a country that serve the mempool,
+  peers that are not full) in Elixir, TypeScript, Rust or Python, and writes a
+  validated `override_gossip_config.json` for your node. Anonymous use works
+  without a key. Docs: [docs/peer-api](https://hypervisor.gg/docs/peer-api/overview).
+- **Relay peering, our paid service:** if you would rather not depend on
+  whoever happens to have a free slot, connect your node to our relays instead:
+  [hypervisor.gg/peering](https://hypervisor.gg/peering).
+
+Run the tuning above before you peer with anyone, us included: the send-window
+result applies to every peer, not just ours.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: a number without a
