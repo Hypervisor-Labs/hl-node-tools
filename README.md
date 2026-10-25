@@ -32,6 +32,9 @@ final number.
 | [`firewall/gossip-connection-ceiling.sh`](firewall/) | Global concurrent-connection ceiling on TCP/4001 (iptables). `--dry-run`, `--status`, `--remove`. | On any node that is reachable from the open internet. |
 | [`firewall/ceiling.nft`](firewall/ceiling.nft) | Same rule in nftables. | If you run nftables. |
 | [`disk/prune-node-data.sh`](disk/) | Age-based pruner for the node's `--write-*` output. **Dry run by default.** | On any node with write flags enabled. Which is most of them. |
+| [`upgrade/preflight.sh`](upgrade/) | Grades a node box PASS/WARN/FAIL for surviving the next hardfork: supervisor present and current, release current (gpg + metadata hash verified), lag, freeze status, disk, restart hygiene. Read-only, `--json`. | Before every network upgrade, and in monitoring. |
+| [`upgrade/fork-watch.sh`](upgrade/) | Every 30 s, classifies the node against a fork from its own files (`FORK_PENDING`, `BEHIND_AT_FREEZE`, `FROZEN_OLD_VERSION`, `RESTART_LOOP`, `RECOVERED`...). node_exporter metrics, webhook, opt-in auto-recover. | Always, from the timer in `upgrade/systemd/`. |
+| [`upgrade/recover.sh`](upgrade/) | Installs the current signed release (and supervisor) into the supervisor's layout and restarts the unit once; guides a state reset. **Dry run by default.** | When a node missed a fork or is stuck at the freeze height. |
 | [`host/apply-restart-hygiene.sh`](host/) | Stops apt/needrestart from restarting your node, and stops a brute-force flood from permanently latching sshd. Debian/Ubuntu. | Once, on a new box. |
 
 ## Quick start on a fresh node box

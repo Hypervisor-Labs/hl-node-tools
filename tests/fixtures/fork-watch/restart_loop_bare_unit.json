@@ -1,0 +1,201 @@
+{
+ "description": "systemd restarts a bare node unit every minute: NRestarts deltas count as restarts.",
+ "params": {},
+ "steps": [
+  {
+   "t": 0,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 20,
+    "height": 13000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 30,
+   "abci": {
+    "present": true,
+    "age_s": 30,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 90
+   },
+   "nrestarts": 1,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 60,
+   "abci": {
+    "present": true,
+    "age_s": 60,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 120
+   },
+   "nrestarts": 1,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 90,
+   "abci": {
+    "present": true,
+    "age_s": 90,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 150
+   },
+   "nrestarts": 2,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 120,
+   "abci": {
+    "present": true,
+    "age_s": 120,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 180
+   },
+   "nrestarts": 2,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 150,
+   "abci": {
+    "present": true,
+    "age_s": 150,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 210
+   },
+   "nrestarts": 3,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 180,
+   "abci": {
+    "present": true,
+    "age_s": 180,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 240
+   },
+   "nrestarts": 3,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 210,
+   "abci": {
+    "present": true,
+    "age_s": 210,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 270
+   },
+   "nrestarts": 4,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 240,
+   "abci": {
+    "present": true,
+    "age_s": 240,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 300
+   },
+   "nrestarts": 4,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 270,
+   "abci": {
+    "present": true,
+    "age_s": 270,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 330
+   },
+   "nrestarts": 5,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 300,
+   "abci": {
+    "present": true,
+    "age_s": 300,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 360
+   },
+   "nrestarts": 5,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 330,
+   "abci": {
+    "present": true,
+    "age_s": 330,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 390
+   },
+   "nrestarts": 6,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 360,
+   "abci": {
+    "present": true,
+    "age_s": 360,
+    "hardfork_version": 20,
+    "height": 13000100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 13000100,
+    "lag_s": 420
+   },
+   "nrestarts": 6,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  }
+ ]
+}

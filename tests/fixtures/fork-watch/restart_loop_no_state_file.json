@@ -1,0 +1,126 @@
+{
+ "description": "Old binary under a bare unit, fresh box: it bootstraps the post-fork state, panics 'unexpected state hardfork version' before writing visor_abci_state.json, systemd restarts it every ~30 s. Must read RESTART_LOOP, not UNKNOWN (seen live on testnet).",
+ "params": {},
+ "steps": [
+  {
+   "t": 0,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "UNKNOWN"
+  },
+  {
+   "t": 30,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 1,
+   "child_starts": [],
+   "expect": "UNKNOWN"
+  },
+  {
+   "t": 60,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 2,
+   "child_starts": [],
+   "expect": "UNKNOWN"
+  },
+  {
+   "t": 90,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 3,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 120,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 4,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 150,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 5,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 180,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 6,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 210,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 7,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 240,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 8,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 270,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 9,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 300,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 10,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 330,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 11,
+   "child_starts": [],
+   "expect": "RESTART_LOOP"
+  }
+ ]
+}

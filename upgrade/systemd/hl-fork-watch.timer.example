@@ -1,0 +1,17 @@
+# hl-fork-watch.timer.example: run fork-watch every 30 s.
+#
+# Why 30 s: a freeze height has been seen appearing only ~20-80 s before the chain
+# halts. A 5-minute watcher samples that window zero or one times and "detects" the
+# fork after the chain has already stopped.
+
+[Unit]
+Description=Run hl-fork-watch every 30 s
+
+[Timer]
+OnBootSec=60
+OnUnitActiveSec=30
+AccuracySec=1
+Unit=hl-fork-watch.service
+
+[Install]
+WantedBy=timers.target

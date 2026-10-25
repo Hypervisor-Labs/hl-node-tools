@@ -1,0 +1,33 @@
+# hl-fork-watch.service.example: one fork-watch run. Fired every 30 s by
+# hl-fork-watch.timer.example. Copy both to /etc/systemd/system/ (dropping
+# .example), substitute @REPO@ (where you cloned hl-node-tools), then:
+#
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now hl-fork-watch.timer
+#
+# 🔴 WorkingDirectory + a RELATIVE script path are deliberate. The repository is
+# named hl-node-tools, which contains the node's program name, and the node's
+# startup /proc scan matches substrings of every process's command line.
+# `ExecStart=/opt/hl-node-tools/upgrade/fork-watch.sh` would put that name in
+# argv twice a minute; `bash upgrade/fork-watch.sh` from the repo root does not.
+# fork-watch.sh refuses to run if it detects the first form.
+
+[Unit]
+Description=Hyperliquid node fork-watch (classify the node relative to a hardfork)
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=@REPO@
+# Observe only: metrics for node_exporter's textfile collector. The directory must
+# exist and be the collector's --collector.textfile.directory. Never a device path.
+ExecStart=/bin/bash upgrade/fork-watch.sh --textfile /var/lib/node_exporter/textfile/hl_upgrade.prom
+# Opt-in automation (read upgrade/README.md first). Replace the line above with:
+# ExecStart=/bin/bash upgrade/fork-watch.sh --textfile /var/lib/node_exporter/textfile/hl_upgrade.prom --webhook https://hooks.example.invalid/hl --auto-recover
+# fork-watch exits 2 on a bad class: that is a finding, not a unit failure.
+SuccessExitStatus=1 2
+# Root is needed only for --auto-recover (it replaces binaries and restarts the
+# node unit). Observe-only can run as any user that can read the node's files:
+# User=@NODE_USER@
+Nice=10
+TimeoutStartSec=900

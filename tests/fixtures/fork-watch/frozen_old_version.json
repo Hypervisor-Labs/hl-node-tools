@@ -1,0 +1,737 @@
+{
+ "description": "Node reaches the freeze height on the old version and nothing swaps it; FROZEN after 5 min, auto-recover due 10 min later; fixed by hand, RECOVERING then RECOVERED.",
+ "params": {},
+ "steps": [
+  {
+   "t": 0,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 12,
+    "height": 7000420,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 30,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 12,
+    "height": 7000840,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 60,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 12,
+    "height": 7001260,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 90,
+   "abci": {
+    "present": true,
+    "age_s": 30,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 30
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 120,
+   "abci": {
+    "present": true,
+    "age_s": 60,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 60
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 150,
+   "abci": {
+    "present": true,
+    "age_s": 90,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 90
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 180,
+   "abci": {
+    "present": true,
+    "age_s": 120,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 120
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 210,
+   "abci": {
+    "present": true,
+    "age_s": 150,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 150
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 240,
+   "abci": {
+    "present": true,
+    "age_s": 180,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 180
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 270,
+   "abci": {
+    "present": true,
+    "age_s": 210,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 210
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 300,
+   "abci": {
+    "present": true,
+    "age_s": 240,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 240
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 330,
+   "abci": {
+    "present": true,
+    "age_s": 270,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 270
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 360,
+   "abci": {
+    "present": true,
+    "age_s": 300,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 300
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 390,
+   "abci": {
+    "present": true,
+    "age_s": 330,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 330
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 420,
+   "abci": {
+    "present": true,
+    "age_s": 360,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 360
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 450,
+   "abci": {
+    "present": true,
+    "age_s": 390,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 390
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 480,
+   "abci": {
+    "present": true,
+    "age_s": 420,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 420
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 510,
+   "abci": {
+    "present": true,
+    "age_s": 450,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 450
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 540,
+   "abci": {
+    "present": true,
+    "age_s": 480,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 480
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 570,
+   "abci": {
+    "present": true,
+    "age_s": 510,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 510
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 600,
+   "abci": {
+    "present": true,
+    "age_s": 540,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 540
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 630,
+   "abci": {
+    "present": true,
+    "age_s": 570,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 570
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 660,
+   "abci": {
+    "present": true,
+    "age_s": 600,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 600
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 690,
+   "abci": {
+    "present": true,
+    "age_s": 630,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 630
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 720,
+   "abci": {
+    "present": true,
+    "age_s": 660,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 660
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 750,
+   "abci": {
+    "present": true,
+    "age_s": 690,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 690
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 780,
+   "abci": {
+    "present": true,
+    "age_s": 720,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 720
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 810,
+   "abci": {
+    "present": true,
+    "age_s": 750,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 750
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 840,
+   "abci": {
+    "present": true,
+    "age_s": 780,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 780
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 870,
+   "abci": {
+    "present": true,
+    "age_s": 810,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 810
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 900,
+   "abci": {
+    "present": true,
+    "age_s": 840,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 840
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 930,
+   "abci": {
+    "present": true,
+    "age_s": 870,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 870
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 960,
+   "abci": {
+    "present": true,
+    "age_s": 900,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 900
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 990,
+   "abci": {
+    "present": true,
+    "age_s": 930,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 930
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": true
+  },
+  {
+   "t": 1020,
+   "abci": {
+    "present": true,
+    "age_s": 960,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 960
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 1050,
+   "abci": {
+    "present": true,
+    "age_s": 990,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 990
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 1080,
+   "abci": {
+    "present": true,
+    "age_s": 1020,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 1020
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 1110,
+   "abci": {
+    "present": true,
+    "age_s": 1050,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 1050
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 1140,
+   "abci": {
+    "present": true,
+    "age_s": 1080,
+    "hardfork_version": 12,
+    "height": 7001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 7001680,
+    "lag_s": 1080
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FROZEN_OLD_VERSION",
+   "expect_due": false
+  },
+  {
+   "t": 1170,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 13,
+    "height": 7002940,
+    "initial_height": 7001680,
+    "scheduled_freeze_height": null,
+    "lag_s": 300
+   },
+   "nrestarts": 1,
+   "child_starts": [],
+   "expect": "RECOVERING"
+  },
+  {
+   "t": 1200,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 13,
+    "height": 7004200,
+    "initial_height": 7001680,
+    "scheduled_freeze_height": null,
+    "lag_s": 220
+   },
+   "nrestarts": 1,
+   "child_starts": [],
+   "expect": "RECOVERING"
+  },
+  {
+   "t": 1230,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 13,
+    "height": 7005460,
+    "initial_height": 7001680,
+    "scheduled_freeze_height": null,
+    "lag_s": 140
+   },
+   "nrestarts": 1,
+   "child_starts": [],
+   "expect": "RECOVERING"
+  },
+  {
+   "t": 1260,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 13,
+    "height": 7006720,
+    "initial_height": 7001680,
+    "scheduled_freeze_height": null,
+    "lag_s": 60
+   },
+   "nrestarts": 1,
+   "child_starts": [],
+   "expect": "RECOVERING"
+  },
+  {
+   "t": 1290,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 13,
+    "height": 7007980,
+    "initial_height": 7001680,
+    "scheduled_freeze_height": null,
+    "lag_s": 0.5
+   },
+   "nrestarts": 1,
+   "child_starts": [],
+   "expect": "RECOVERING"
+  },
+  {
+   "t": 1320,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 13,
+    "height": 7009240,
+    "initial_height": 7001680,
+    "scheduled_freeze_height": null,
+    "lag_s": 0.5
+   },
+   "nrestarts": 1,
+   "child_starts": [],
+   "expect": "RECOVERING"
+  },
+  {
+   "t": 1350,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 13,
+    "height": 7010500,
+    "initial_height": 7001680,
+    "scheduled_freeze_height": null,
+    "lag_s": 0.5
+   },
+   "nrestarts": 1,
+   "child_starts": [],
+   "expect": "RECOVERED"
+  },
+  {
+   "t": 1380,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 13,
+    "height": 7011760,
+    "initial_height": 7001680,
+    "scheduled_freeze_height": null,
+    "lag_s": 0.5
+   },
+   "nrestarts": 1,
+   "child_starts": [],
+   "expect": "RECOVERED"
+  }
+ ]
+}

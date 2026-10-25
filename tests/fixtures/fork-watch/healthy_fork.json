@@ -1,0 +1,226 @@
+{
+ "description": "Supervisor swaps the binary ~90 s after the freeze; one child restart; never a bad class.",
+ "params": {},
+ "steps": [
+  {
+   "t": 0,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 41,
+    "height": 5000420,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 5002520,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 30,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 41,
+    "height": 5000840,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 5002520,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 60,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 41,
+    "height": 5001260,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 5002520,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 90,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 41,
+    "height": 5001680,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 5002520,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 120,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 41,
+    "height": 5002100,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 5002520,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 150,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 41,
+    "height": 5002520,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 5002520,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 180,
+   "abci": {
+    "present": true,
+    "age_s": 0,
+    "hardfork_version": 41,
+    "height": 5002520,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 5002520,
+    "lag_s": 20
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 210,
+   "abci": {
+    "present": true,
+    "age_s": 30,
+    "hardfork_version": 41,
+    "height": 5002520,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 5002520,
+    "lag_s": 50
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 240,
+   "abci": {
+    "present": true,
+    "age_s": 60,
+    "hardfork_version": 41,
+    "height": 5002520,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 5002520,
+    "lag_s": 80
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 270,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 42,
+    "height": 5002940,
+    "initial_height": 5002520,
+    "scheduled_freeze_height": null,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    255
+   ],
+   "expect": "OK"
+  },
+  {
+   "t": 300,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 42,
+    "height": 5003360,
+    "initial_height": 5002520,
+    "scheduled_freeze_height": null,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    255
+   ],
+   "expect": "OK"
+  },
+  {
+   "t": 330,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 42,
+    "height": 5003780,
+    "initial_height": 5002520,
+    "scheduled_freeze_height": null,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    255
+   ],
+   "expect": "OK"
+  },
+  {
+   "t": 360,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 42,
+    "height": 5004200,
+    "initial_height": 5002520,
+    "scheduled_freeze_height": null,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    255
+   ],
+   "expect": "OK"
+  },
+  {
+   "t": 390,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 42,
+    "height": 5004620,
+    "initial_height": 5002520,
+    "scheduled_freeze_height": null,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    255
+   ],
+   "expect": "OK"
+  }
+ ]
+}

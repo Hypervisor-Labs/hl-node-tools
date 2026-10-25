@@ -1,0 +1,26 @@
+{
+ "description": "No visor_abci_state.json yet (fresh box, or state moved aside for a bootstrap).",
+ "params": {},
+ "steps": [
+  {
+   "t": 0,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "UNKNOWN"
+  },
+  {
+   "t": 30,
+   "abci": {
+    "present": false,
+    "error": "missing"
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "UNKNOWN"
+  }
+ ]
+}

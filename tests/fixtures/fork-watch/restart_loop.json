@@ -1,0 +1,799 @@
+{
+ "description": "Child respawns every 3 min at the freeze height: RESTART_LOOP once 3 starts fall in 30 min.",
+ "params": {},
+ "steps": [
+  {
+   "t": 0,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 0.4
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 30,
+   "abci": {
+    "present": true,
+    "age_s": 30,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 30
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 60,
+   "abci": {
+    "present": true,
+    "age_s": 60,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 60
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 90,
+   "abci": {
+    "present": true,
+    "age_s": 90,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 90
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90
+   ],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 120,
+   "abci": {
+    "present": true,
+    "age_s": 120,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 120
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90
+   ],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 150,
+   "abci": {
+    "present": true,
+    "age_s": 150,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 150
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90
+   ],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 180,
+   "abci": {
+    "present": true,
+    "age_s": 180,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 180
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90
+   ],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 210,
+   "abci": {
+    "present": true,
+    "age_s": 210,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 210
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90
+   ],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 240,
+   "abci": {
+    "present": true,
+    "age_s": 240,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 240
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90
+   ],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 270,
+   "abci": {
+    "present": true,
+    "age_s": 270,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 270
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270
+   ],
+   "expect": "FORK_PENDING"
+  },
+  {
+   "t": 300,
+   "abci": {
+    "present": true,
+    "age_s": 300,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 300
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270
+   ],
+   "expect": "FROZEN_OLD_VERSION"
+  },
+  {
+   "t": 330,
+   "abci": {
+    "present": true,
+    "age_s": 330,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 330
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270
+   ],
+   "expect": "FROZEN_OLD_VERSION"
+  },
+  {
+   "t": 360,
+   "abci": {
+    "present": true,
+    "age_s": 360,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 360
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270
+   ],
+   "expect": "FROZEN_OLD_VERSION"
+  },
+  {
+   "t": 390,
+   "abci": {
+    "present": true,
+    "age_s": 390,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 390
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270
+   ],
+   "expect": "FROZEN_OLD_VERSION"
+  },
+  {
+   "t": 420,
+   "abci": {
+    "present": true,
+    "age_s": 420,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 420
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270
+   ],
+   "expect": "FROZEN_OLD_VERSION"
+  },
+  {
+   "t": 450,
+   "abci": {
+    "present": true,
+    "age_s": 450,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 450
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 480,
+   "abci": {
+    "present": true,
+    "age_s": 480,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 480
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 510,
+   "abci": {
+    "present": true,
+    "age_s": 510,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 510
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 540,
+   "abci": {
+    "present": true,
+    "age_s": 540,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 540
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 570,
+   "abci": {
+    "present": true,
+    "age_s": 570,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 570
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 600,
+   "abci": {
+    "present": true,
+    "age_s": 600,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 600
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 630,
+   "abci": {
+    "present": true,
+    "age_s": 630,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 630
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 660,
+   "abci": {
+    "present": true,
+    "age_s": 660,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 660
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 690,
+   "abci": {
+    "present": true,
+    "age_s": 690,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 690
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 720,
+   "abci": {
+    "present": true,
+    "age_s": 720,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 720
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 750,
+   "abci": {
+    "present": true,
+    "age_s": 750,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 750
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 780,
+   "abci": {
+    "present": true,
+    "age_s": 780,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 780
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 810,
+   "abci": {
+    "present": true,
+    "age_s": 810,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 810
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 840,
+   "abci": {
+    "present": true,
+    "age_s": 840,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 840
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 870,
+   "abci": {
+    "present": true,
+    "age_s": 870,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 870
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 900,
+   "abci": {
+    "present": true,
+    "age_s": 900,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 900
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 930,
+   "abci": {
+    "present": true,
+    "age_s": 930,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 930
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 960,
+   "abci": {
+    "present": true,
+    "age_s": 960,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 960
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 990,
+   "abci": {
+    "present": true,
+    "age_s": 990,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 990
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810,
+    990
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 1020,
+   "abci": {
+    "present": true,
+    "age_s": 1020,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 1020
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810,
+    990
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 1050,
+   "abci": {
+    "present": true,
+    "age_s": 1050,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 1050
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810,
+    990
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 1080,
+   "abci": {
+    "present": true,
+    "age_s": 1080,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 1080
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810,
+    990
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 1110,
+   "abci": {
+    "present": true,
+    "age_s": 1110,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 1110
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810,
+    990
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 1140,
+   "abci": {
+    "present": true,
+    "age_s": 1140,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 1140
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810,
+    990
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 1170,
+   "abci": {
+    "present": true,
+    "age_s": 1170,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 1170
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810,
+    990,
+    1170
+   ],
+   "expect": "RESTART_LOOP"
+  },
+  {
+   "t": 1200,
+   "abci": {
+    "present": true,
+    "age_s": 1200,
+    "hardfork_version": 7,
+    "height": 11000000,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 11000000,
+    "lag_s": 1200
+   },
+   "nrestarts": 0,
+   "child_starts": [
+    90,
+    270,
+    450,
+    630,
+    810,
+    990,
+    1170
+   ],
+   "expect": "RESTART_LOOP"
+  }
+ ]
+}

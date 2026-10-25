@@ -1,0 +1,102 @@
+{
+ "description": "Freeze scheduled while the node is ~5,000 blocks behind: brick risk (never auto-recovered).",
+ "params": {},
+ "steps": [
+  {
+   "t": 0,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 3,
+    "height": 9000300,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 9005000,
+    "lag_s": 600
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "BEHIND_AT_FREEZE",
+   "expect_due": false
+  },
+  {
+   "t": 30,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 3,
+    "height": 9000600,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 9005000,
+    "lag_s": 600
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "BEHIND_AT_FREEZE",
+   "expect_due": false
+  },
+  {
+   "t": 60,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 3,
+    "height": 9000900,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 9005000,
+    "lag_s": 600
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "BEHIND_AT_FREEZE",
+   "expect_due": false
+  },
+  {
+   "t": 90,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 3,
+    "height": 9001200,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 9005000,
+    "lag_s": 600
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "BEHIND_AT_FREEZE",
+   "expect_due": false
+  },
+  {
+   "t": 120,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 3,
+    "height": 9001500,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 9005000,
+    "lag_s": 600
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "BEHIND_AT_FREEZE",
+   "expect_due": false
+  },
+  {
+   "t": 150,
+   "abci": {
+    "present": true,
+    "age_s": 0.2,
+    "hardfork_version": 3,
+    "height": 9001800,
+    "initial_height": 1000,
+    "scheduled_freeze_height": 9005000,
+    "lag_s": 600
+   },
+   "nrestarts": 0,
+   "child_starts": [],
+   "expect": "BEHIND_AT_FREEZE",
+   "expect_due": false
+  }
+ ]
+}
